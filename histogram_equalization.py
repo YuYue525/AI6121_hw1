@@ -4,8 +4,6 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
-# updated
-
 img_dir = "samples"
 pixel_range = 256
 channel_number = 3
