@@ -5,6 +5,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 img_dir = "samples"
+result_dir = "results"
 pixel_range = 256
 channel_number = 3
 
@@ -44,8 +45,13 @@ def rgb_histogram_equalization(img_name, img_path):
 
     # draw_distribution(np.array(image_before.getchannel(0)))
     # draw_distribution(np.array(image_after.getchannel(0)))
+    
+    result_folder_name = "rgb_he_results"
+    result_folder_path = os.path.join(result_dir, result_folder_name)
+    if not os.path.exists(result_folder_path):
+        os.makedirs(result_folder_path)
 
-    image_after.save(os.path.join("results", img_name))
+    image_after.save(os.path.join(result_dir, result_folder_name, img_name))
 
 def rgb2hsv(r, g, b):
     r, g, b = r/255.0, g/255.0, b/255.0
@@ -125,12 +131,12 @@ def hsv_histogram_equalization(img_name, img_path):
 
     cdf = []
 
-    for i in range(100000):
-        cdf.append(np.sum(channel_before <= (i / 100000))/image_size)
+    for i in range(1000):
+        cdf.append(np.sum(channel_before <= (i / 1000))/image_size)
 
     for x in range(height):
         for y in range(width):
-            hsv_after_array[x][y][2] = cdf[int(hsv_before_array[x][y][2]*99999)]
+            hsv_after_array[x][y][2] = cdf[int(hsv_before_array[x][y][2]*999)]
 
     for x in range(height):
         for y in range(width):
@@ -143,10 +149,16 @@ def hsv_histogram_equalization(img_name, img_path):
 
     # draw_distribution(np.array(image_before.getchannel(0)))
     # draw_distribution(np.array(image_after.getchannel(0)))
+    
+    result_folder_name = "rgb2hsv_he_results"
+    result_folder_path = os.path.join(result_dir, result_folder_name)
+    if not os.path.exists(result_folder_path):
+        os.makedirs(result_folder_path)
 
-    image_after.save(os.path.join("hsv_results", img_name))
+    image_after.save(os.path.join(result_dir, result_folder_name, img_name))
 
 if __name__ == '__main__':
     img_names = os.listdir(img_dir)
     for img_name in img_names:
-        hsv_histogram_equalization(img_name, os.path.join("samples", img_name))
+        hsv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+        rgb_histogram_equalization(img_name, os.path.join(img_dir, img_name))
