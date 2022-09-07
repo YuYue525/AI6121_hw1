@@ -33,7 +33,7 @@ def bgr2yuv_histogram_equalization(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
     
 def bgr2hsv_histogram_equalization(img_name, img_path):
     img_bgr = cv2.imread(img_path)
@@ -48,7 +48,7 @@ def bgr2hsv_histogram_equalization(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
     
 def bgr2lab_histogram_equalization(img_name, img_path):
     img_bgr = cv2.imread(img_path)
@@ -63,7 +63,7 @@ def bgr2lab_histogram_equalization(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
 
 
 def bgr_CLAHE(img_name, img_path):
@@ -94,7 +94,7 @@ def bgr2yuv_CLAHE(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
     
 def bgr2hsv_CLAHE(img_name, img_path):
     img_bgr = cv2.imread(img_path)
@@ -109,7 +109,7 @@ def bgr2hsv_CLAHE(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
     
 def bgr2lab_CLAHE(img_name, img_path):
     img_bgr = cv2.imread(img_path)
@@ -124,7 +124,7 @@ def bgr2lab_CLAHE(img_name, img_path):
     if not os.path.exists(result_folder_path):
         os.makedirs(result_folder_path)
     
-    cv2.imwrite(os.path.join(result_folder_path, img_name), img_bgr)
+    cv2.imwrite(os.path.join(result_folder_path, img_name), img_output)
     
 if __name__ == '__main__':
     img_names = os.listdir(img_dir)
