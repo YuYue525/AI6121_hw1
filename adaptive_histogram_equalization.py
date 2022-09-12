@@ -134,7 +134,7 @@ def rgb2hsv_AHE(img_name, img_path, tileGridSize = (8, 8)):
             for tile_h in range(tile_height):
                 for tile_w in range(tile_width):
                 
-                    #find the pixels of he region
+                    #find the pixels of the region
                     pixel_h = abs((x - (tile_height // 2) + tile_h))
                     pixel_w = abs((y - (tile_width // 2) + tile_w))
                     pixel_h = (height - 1 - (pixel_h % (height - 1))) if (pixel_h >= height) else pixel_h
@@ -164,7 +164,8 @@ def rgb2hsv_AHE(img_name, img_path, tileGridSize = (8, 8)):
 if __name__ == '__main__':
     img_names = os.listdir(img_dir)
     for img_name in img_names:
-        rgb2hsv_AHE(img_name, os.path.join(img_dir, img_name))
+        if img_name.endswith(".jpg") or img_name.endswith(".jpeg"):
+            rgb2hsv_AHE(img_name, os.path.join(img_dir, img_name), tileGridSize = (16, 16))
             
             
     

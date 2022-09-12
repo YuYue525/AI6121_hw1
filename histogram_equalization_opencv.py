@@ -129,13 +129,14 @@ def bgr2lab_CLAHE(img_name, img_path):
 if __name__ == '__main__':
     img_names = os.listdir(img_dir)
     for img_name in img_names:
-        bgr_histogram_equalization(img_name, os.path.join(img_dir, img_name))
-        bgr2yuv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
-        bgr2hsv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
-        bgr2lab_histogram_equalization(img_name, os.path.join(img_dir, img_name))
-        bgr_CLAHE(img_name, os.path.join(img_dir, img_name))
-        bgr2yuv_CLAHE(img_name, os.path.join(img_dir, img_name))
-        bgr2hsv_CLAHE(img_name, os.path.join(img_dir, img_name))
-        bgr2lab_CLAHE(img_name, os.path.join(img_dir, img_name))
+        if img_name.endswith(".jpg") or img_name.endswith(".jpeg"):
+            bgr_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+            bgr2yuv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+            bgr2hsv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+            bgr2lab_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+            bgr_CLAHE(img_name, os.path.join(img_dir, img_name))
+            bgr2yuv_CLAHE(img_name, os.path.join(img_dir, img_name))
+            bgr2hsv_CLAHE(img_name, os.path.join(img_dir, img_name))
+            bgr2lab_CLAHE(img_name, os.path.join(img_dir, img_name))
     
     

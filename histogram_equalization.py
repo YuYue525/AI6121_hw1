@@ -8,6 +8,7 @@ img_dir = "samples"
 result_dir = "results"
 pixel_range = 256
 channel_number = 3
+lightness_level_num = 1000
 
 def draw_distribution(data):
     plt.hist(data, facecolor='black')
@@ -125,18 +126,18 @@ def hsv_histogram_equalization(img_name, img_path):
             h, s, v = rgb2hsv(r, g, b)
             hsv_before_array[x][y] = np.array([h, s, v], dtype = 'float64')
 
-    hsv_after_array = hsv_before_array
+    hsv_after_array = np.array(hsv_before_array, dtype = 'float64')
 
     channel_before = hsv_before_array[:, :, 2]
 
     cdf = []
-
-    for i in range(1000):
-        cdf.append(np.sum(channel_before <= (i / 1000))/image_size)
+    
+    for i in range(lightness_level_num):
+        cdf.append(np.sum(channel_before <= (i / (lightness_level_num - 1)))/image_size)
 
     for x in range(height):
         for y in range(width):
-            hsv_after_array[x][y][2] = cdf[int(hsv_before_array[x][y][2]*999)]
+            hsv_after_array[x][y][2] = cdf[int(hsv_before_array[x][y][2]*(lightness_level_num - 1))]
 
     for x in range(height):
         for y in range(width):
@@ -160,5 +161,6 @@ def hsv_histogram_equalization(img_name, img_path):
 if __name__ == '__main__':
     img_names = os.listdir(img_dir)
     for img_name in img_names:
-        hsv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
-        rgb_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+        if img_name.endswith(".jpg") or img_name.endswith(".jpeg"):
+            # rgb_histogram_equalization(img_name, os.path.join(img_dir, img_name))
+            hsv_histogram_equalization(img_name, os.path.join(img_dir, img_name))
