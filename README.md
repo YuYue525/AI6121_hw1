@@ -1,1 +1,1 @@
-![content](https://github.com/weiman152/StarsView/blob/master/ScreenShots/1.png)
+![content](https://github.com/YuYue525/AI6121_hw1/blob/main/AI6121_assignment_1_report.pdf)
